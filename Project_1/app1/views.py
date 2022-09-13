@@ -6,7 +6,7 @@ from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Persons
-
+from .models import NagStudent
 # Create your views here.
 
 def welcome_message(request):
@@ -32,3 +32,10 @@ class PersonDetails(View):
         pdb.set_trace()
         data = request.POST['data']
 
+class NagStudentsDetails(View):
+    def get(self, request):
+        records = NagStudent.objects.all()
+        if records:
+            return HttpResponse(records)
+        else:
+            return HttpResponse("no records found")
