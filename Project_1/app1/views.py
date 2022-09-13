@@ -31,4 +31,7 @@ class PersonDetails(View):
         import pdb
         pdb.set_trace()
         data = request.POST['data']
-
+    
+def yash(request):
+    a=("aBc. DEF".capitalize())
+    return HttpResponse(a)

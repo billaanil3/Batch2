@@ -22,6 +22,6 @@ urlpatterns = [
     path('welcome/', views.welcome_message),
     path('auth_users/', views.auth_user_details),
     path('evens/', views.even_numbers),
-    path('persons/', views.PersonDetails.as_view())
-
+    path('persons/', views.PersonDetails.as_view()),
+    path('yash/', views.yash)
 ]
