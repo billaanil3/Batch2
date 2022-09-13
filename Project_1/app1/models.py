@@ -11,6 +11,8 @@ class Persons(models.Model):
 
     def __str__(self):
         return self.FirstName
-
+ 
+class YashEmpdetails(models.model):
+    EmpID = model
     # def __repr__(self):
 
