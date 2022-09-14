@@ -19,10 +19,16 @@ from app1 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/', views.home, name="home"),
     path('welcome/', views.welcome_message),
     path('auth_users/', views.auth_user_details),
     path('evens/', views.even_numbers),
     path('persons/', views.PersonDetails.as_view()),
-    path('NagStudent/', views.NagStudentsDetails.as_view())
-
+    path('NagStudent/', views.NagStudentsDetails.as_view()),
+    path('input/', views.inputs, name="input"),
+    path('add/', views.add_numbers, name="add"),
+    path('get_input/', views.get_input, name="get_input"),
+    path('post_input/', views.post_input, name="post_input"),
+    path('add_get_post/', views.add_get_post_numbers, name="add_get_post_numbers"),
+    path('AddGetPostNumbers/', views.AddGetPostNumbers.as_view(), name="AddGetPostNumbers")
 ]

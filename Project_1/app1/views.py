@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Persons
 from .models import NagStudent
 # Create your views here.
+def home(request):
+    return render(request, "home.html")
 
 def welcome_message(request):
     return HttpResponse("Welcome")
@@ -28,8 +30,8 @@ class PersonDetails(View):
 
     @csrf_exempt
     def post(self, request):
-        import pdb
-        pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
         data = request.POST['data']
 
 class NagStudentsDetails(View):
@@ -39,3 +41,56 @@ class NagStudentsDetails(View):
             return HttpResponse(records)
         else:
             return HttpResponse("no records found")
+
+
+def inputs(request):
+    return render(request, "input.html")
+
+
+def add_numbers(request):
+    try:
+        num1 = request.GET['n1']
+        num2 = request.GET['n2']
+        num3 = int(num1) + int(num2)
+        return HttpResponse("<html><body bgcolor=cyan><h1> Sum of Two numbers:"+str(num3)+"</h1></body></html>")
+    except ValueError:
+        return HttpResponse("Invalid Input")        
+
+
+def get_input(request):
+    return render(request, "input1.html")
+
+def post_input(request):
+    return render(request, "input2.html")
+
+def add_get_post_numbers(request):
+    if request.method == "GET":
+        try:
+            num1 = request.GET['n1']
+            num2 = request.GET['n2']
+            num3 = int(num1) + int(num2)
+            return HttpResponse("<html><body bgcolor=cyan><h1> Sum of Two numbers:"+str(num3)+"</h1></body></html>")
+        except ValueError:
+            return HttpResponse("Invalid Input")
+    else:
+        try:
+            num1 = request.POST['n1']
+            num2 = request.POST['n2']
+            num3 = int(num1) * int(num2)
+            return HttpResponse("<html><body bgcolor=cyan><h1> Multiplication of Two numbers:"+str(num3)+"</h1></body></html>")
+        except ValueError:
+            return HttpResponse("Invalid Input")
+
+
+class AddGetPostNumbers(View):
+    def get(self, request):
+        num1 = request.GET['n1']
+        num2 = request.GET['n2']
+        num3 = int(num1) + int(num2)
+        return HttpResponse("<html><body bgcolor=cyan><h1> Sum of Two numbers:"+str(num3)+"</h1></body></html>")
+    def post(self, request):
+        num1 = request.POST['n1']
+        num2 = request.POST['n2']
+        num3 = int(num1) * int(num2)
+        return HttpResponse("<html><body bgcolor=cyan><h1> Multiplication of Two numbers:"+str(num3)+"</h1></body></html>")
+
