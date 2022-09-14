@@ -12,7 +12,13 @@ class Persons(models.Model):
     def __str__(self):
         return self.FirstName
  
-class YashEmpdetails(models.model):
-    EmpID = model
+#class YashEmpdetails(models.Model):
+    #EmpID = model
     # def __repr__(self):
-
+class NagStudent(models.Model):
+    st_id = models.IntegerField(primary_key=True)
+    last_name = models.CharField(max_length=25)
+    firstname = models.CharField(max_length=25)
+    sc_name = models.CharField(max_length=20)
+    def __str__(self):
+        return self.firstname
