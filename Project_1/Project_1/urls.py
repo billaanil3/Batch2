@@ -34,5 +34,9 @@ urlpatterns = [
     path('AddGetPostNumbers/', views.AddGetPostNumbers.as_view(), name="AddGetPostNumbers"),
     path('NagDetails/', views.NagDetails.as_view(), name="NagDetails"),
     path('nag_student_register/', views.nag_student_register, name="register page"),
-    path('save_nag_student/', views.save_nag_student, name="records page")
+    path('save_nag_student/', views.save_nag_student, name="records page"),
+    path('save_nag_student_via_forms/', views.save_nag_student_via_forms, name="save_nag_student_via_forms"),
+    path('save_nag_student_via_model_forms/', views.save_nag_student_via_model_forms, name="save_nag_student_via_model_forms"),
+    path('display/', views.dipaly_students, name="dipaly_students")
+    
 ]

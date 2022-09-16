@@ -5,7 +5,8 @@
 		</title>
 	</head>
 	<body bgcolor="orange">
-		<form method="post" action="../">
+		<form method="post" action="../save_nag_student/">
+			{% csrf_token %}
 			studentId : <input type="text" name="st_id"><br>
 			FirstName: <input type="text" name="first_name"><br>
             LastName: <input type="text" name="last_name"><br>
