@@ -94,3 +94,31 @@ class AddGetPostNumbers(View):
         num3 = int(num1) * int(num2)
         return HttpResponse("<html><body bgcolor=cyan><h1> Multiplication of Two numbers:"+str(num3)+"</h1></body></html>")
 
+class NagDetails(View):
+    def get(self, request):
+        records=NagStudent.objects.all()
+        if records.len(NagStudent)>2:
+            return HttpResponse(records(firstname+last_name))
+        else:
+            return HttpResponse("no records found")
+    def post(self, request):
+        records=NagStudent.objects.all()
+        if records.len(NagStudent)<2:
+            return HttpResponse(records(last_name+firstname))
+
+def login(request):
+    return render(request,"login.html")
+
+def nag_student_register(request):
+    return render(request,"nag_student_reg.html")
+def save_nag_student(request):
+    try:
+        studentId = request.POST['st_id']
+        FirstName = request.POST['first_name']
+        Lastname =request.POST['last_name']
+        subjectname = request.POST['subject_name']
+        NagStudent.objects.create(st_id=studentId,last_name=Lastname,firstname= FirstName,sc_name=subjectname)
+        NagStudent.objects.save()
+        return HttpResponse("Nagtudent record created succesfully")
+    except ValueError:
+        return HttpResponse("Invalid Student details")

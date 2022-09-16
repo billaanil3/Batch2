@@ -19,6 +19,7 @@ from app1 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', views.login, name="login"),
     path('home/', views.home, name="home"),
     path('welcome/', views.welcome_message),
     path('auth_users/', views.auth_user_details),
@@ -30,5 +31,8 @@ urlpatterns = [
     path('get_input/', views.get_input, name="get_input"),
     path('post_input/', views.post_input, name="post_input"),
     path('add_get_post/', views.add_get_post_numbers, name="add_get_post_numbers"),
-    path('AddGetPostNumbers/', views.AddGetPostNumbers.as_view(), name="AddGetPostNumbers")
+    path('AddGetPostNumbers/', views.AddGetPostNumbers.as_view(), name="AddGetPostNumbers"),
+    path('NagDetails/', views.NagDetails.as_view(), name="NagDetails"),
+    path('nag_student_register/', views.nag_student_register, name="register page"),
+    path('save_nag_student/', views.save_nag_student, name="records page")
 ]
