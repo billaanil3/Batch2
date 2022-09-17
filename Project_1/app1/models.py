@@ -17,6 +17,60 @@ class NagStudent(models.Model):
     last_name = models.CharField(max_length=25)
     firstname = models.CharField(max_length=25)
     sc_name = models.CharField(max_length=20)
+
     def __str__(self):
         return self.firstname
+
+# 1. O2O
+# 2. O2M
+# 3. M2O
+# 4. M2M
+
+# One To Many
+class Menu(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+# class Item(models.Model):
+#     name = models.CharField(max_length=30)
+#     description = models.CharField(max_length=100)
+#     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
+
+# Many To Many
+class Amenity(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Store(models.Model):
+    name = models.CharField(max_length=30)    
+    address = models.CharField(max_length=30)
+    city = models.CharField(max_length=30)
+    state = models.CharField(max_length=2)
+    email = models.EmailField()
+    amenities = models.ManyToManyField(Amenity, blank=True)
+
+    def __str__(self):
+        return self.name
+
+# One To One
+class Item(models.Model):
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100)
+    calories = models.IntegerField(default=0)
+    price = models.FloatField(default=0)
+
+    def __str__(self):
+        return self.name
+
+class Drink(models.Model):
+    item = models.OneToOneField(Item, on_delete=models.CASCADE, primary_key=True)
+
+    def __str__(self):
+        return self.item
 

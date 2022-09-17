@@ -37,6 +37,12 @@ urlpatterns = [
     path('save_nag_student/', views.save_nag_student, name="records page"),
     path('save_nag_student_via_forms/', views.save_nag_student_via_forms, name="save_nag_student_via_forms"),
     path('save_nag_student_via_model_forms/', views.save_nag_student_via_model_forms, name="save_nag_student_via_model_forms"),
-    path('display/', views.dipaly_students, name="dipaly_students")
-    
+    path('display/', views.dipaly_students, name="dipaly_students"),
+    path('breakfast_details/', views.get_breakfast_details, name="get_breakfast_details"),
+    path('cookie_example/', views.cookie_example, name="cookie_example"),
+    path('add_by_cookie/', views.add_by_cookie, name="add_by_cookie"),
+    path('display_by_cookie/', views.display_by_cookie, name="display_by_cookie"),
+    path('session_example/', views.session_example, name="session_example"),
+    path('add_by_session/', views.add_by_session, name="add_by_session"),
+    path('display_by_session/', views.display_by_session, name="display_by_session")
 ]
