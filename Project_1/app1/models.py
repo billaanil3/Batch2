@@ -20,3 +20,15 @@ class NagStudent(models.Model):
     def __str__(self):
         return self.firstname
 
+
+class Employee(models.Model):
+    EmpId = models.IntegerField(primary_key=True)
+    Name = models.CharField(max_length=25)
+    Initial = models.CharField(max_length=25)
+    CompanyName = models.CharField(max_length=35)
+    Area = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.Name
+
+

@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>
+			RegisterEmployee
+		</title>
+	</head>
+	<body bgcolor="orange">
+		<form method="post" action="../save_employee_register/">
+			{% csrf_token %}
+			EmpId : <input type="text" name="em_id"><br>
+			EmpName: <input type="text" name="name"><br>
+            EmpInitial: <input type="text" name="initial"><br>
+            CmpName: <input type="text" name="cmp_name"><br>
+			area: <input type ="text" name="e_area"><br>
+			<input type="submit" name="register" value="Register">
+		</form>
+	</body>
+</html>
