@@ -32,7 +32,7 @@ urlpatterns = [
     path('post_input/', views.post_input, name="post_input"),
     path('add_get_post/', views.add_get_post_numbers, name="add_get_post_numbers"),
     path('AddGetPostNumbers/', views.AddGetPostNumbers.as_view(), name="AddGetPostNumbers"),
-    path('NagDetails/', views.NagDetails.as_view(), name="NagDetails"),
+    #path('NagDetails/', views.NagDetails.as_view(), name="NagDetails"),
     path('nag_student_register/', views.nag_student_register, name="register page"),
     path('save_nag_student/', views.save_nag_student, name="records page"),
     path('save_nag_student_via_forms/', views.save_nag_student_via_forms, name="save_nag_student_via_forms"),
@@ -44,5 +44,7 @@ urlpatterns = [
     path('display_by_cookie/', views.display_by_cookie, name="display_by_cookie"),
     path('session_example/', views.session_example, name="session_example"),
     path('add_by_session/', views.add_by_session, name="add_by_session"),
-    path('display_by_session/', views.display_by_session, name="display_by_session")
+    path('display_by_session/', views.display_by_session, name="display_by_session"),
+    path('NagTeacherDetails/', views.NagTeacherDetails.as_view(), name="TeacherDetails"),
+    path('TeacherDetailsAsTable/', views.TeacherDetailsAsTable, name="TeacherDetailsAsTable"),
 ]

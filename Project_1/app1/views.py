@@ -6,7 +6,7 @@ from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Persons
-from .models import NagStudent, Item
+from .models import NagStudent, Item, TeacherDetails
 from .forms import NagStudentForm, NagStudentModelForm
 
 # Create your views here.
@@ -96,18 +96,6 @@ class AddGetPostNumbers(View):
         num3 = int(num1) * int(num2)
         return HttpResponse("<html><body bgcolor=cyan><h1> Multiplication of Two numbers:"+str(num3)+"</h1></body></html>")
 
-class NagDetails(View):
-    def get(self, request):
-        records=NagStudent.objects.all()
-        if records.len(NagStudent)>2:
-            return HttpResponse(records(firstname+last_name))
-        else:
-            return HttpResponse("no records found")
-    def post(self, request):
-        records=NagStudent.objects.all()
-        if records.len(NagStudent)<2:
-            return HttpResponse(records(last_name+firstname))
-
 def login(request):
     return render(request,"login.html")
 
@@ -195,3 +183,13 @@ def display_by_session(request):
         return HttpResponse("Addition of two numbers:" +str(res))
     else:
         return render(request, "session_input.html")
+class NagTeacherDetails(View):
+    def get(self, request):
+        records = TeacherDetails.objects.all()
+        if records:
+            return HttpResponse(records)
+        else:
+            return HttpResponse("no records found")
+def TeacherDetailsAsTable(request):
+    details = TeacherDetails.objects.all()
+    return render(request, "show.html", {"records":details})

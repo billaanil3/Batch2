@@ -73,4 +73,19 @@ class Drink(models.Model):
 
     def __str__(self):
         return self.item
+class NagBaseTeacher(models.Model):
+    age = models.IntegerField()
+    class Meta():
+        abstract = True
+class TeacherDetails(NagBaseTeacher):
+    name = models.CharField(max_length=100)
+    subject = models.CharField(max_length=100)
+
+
+class Teacher(models.Model):
+    designation = models.CharField(max_length=100)
+    c_id = models.IntegerField()
+    subject = models.CharField(max_length=100)
+class Student(Teacher):
+    classs_name = models.CharField(max_length=100)
 

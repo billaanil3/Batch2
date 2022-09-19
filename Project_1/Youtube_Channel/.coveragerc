@@ -1,0 +1,7 @@
+[run]
+source = youtube/,celeryApp/,CryceTruly/,
+omit = 
+	venv
+	*/migrations/*
+	*/tests/*
+	*/__init__.py
