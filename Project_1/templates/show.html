@@ -1,0 +1,21 @@
+<html>
+	<body>
+		<table border="1">
+			<tr>
+				<th>Teacher Age</th>
+				<th>Teacher Name</th>
+				<th>Teacher Subject</th>
+			</tr>
+			{% for rec in records %}
+			<tr>
+				<td> {{ rec.age }} </td>
+				<td> {{ rec.name }} </td>
+				<td> {{ rec.subject }} </td>
+
+			</tr>
+			{% endfor %}
+		</table>
+		<a href="/TeacherDetailsAsTable/">Click here to add another record</a>
+	</body>
+</html>
+

@@ -1,0 +1,22 @@
+<html>
+	<body>
+		<table border="1">
+			<tr>
+				<th>Student Id</th>
+				<th>Student LastName</th>
+				<th>Student FirstName</th>
+				<th>Student Subject</th>
+			</tr>
+			{% for rec in records %}
+			<tr>
+				<td> {{ rec.st_id }} </td>
+				<td> {{ rec.last_name }} </td>
+				<td> {{ rec.firstname }} </td>
+				<td> {{ rec.sc_name }} </td>
+			</tr>
+			{% endfor %}
+		</table>
+		<a href="/save_nag_student_via_model_forms/">Click here to add another record</a>
+	</body>
+</html>
+

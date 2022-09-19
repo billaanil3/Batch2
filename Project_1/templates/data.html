@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title>
+			Login Page
+		</title>
+	</head>
+	<body bgcolor="#c2c2a3">
+		<form method="Post" action="">
+			{% csrf_token %}
+			{{ myform }}
+			<input type="submit" name="Submit" value="Submit">
+		</form>
+	</body>
+</html>

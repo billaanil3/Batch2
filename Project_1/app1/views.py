@@ -6,8 +6,12 @@ from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Persons
-from .models import NagStudent
+from .models import NagStudent, Item, TeacherDetails
+from .forms import NagStudentForm, NagStudentModelForm
+
 # Create your views here.
+def home(request):
+    return render(request, "home.html")
 
 def welcome_message(request):
     return HttpResponse("Welcome")
@@ -28,8 +32,8 @@ class PersonDetails(View):
 
     @csrf_exempt
     def post(self, request):
-        import pdb
-        pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
         data = request.POST['data']
 
 class NagStudentsDetails(View):
@@ -39,3 +43,153 @@ class NagStudentsDetails(View):
             return HttpResponse(records)
         else:
             return HttpResponse("no records found")
+
+
+def inputs(request):
+    return render(request, "input.html")
+
+
+def add_numbers(request):
+    try:
+        num1 = request.GET['n1']
+        num2 = request.GET['n2']
+        num3 = int(num1) + int(num2)
+        return HttpResponse("<html><body bgcolor=cyan><h1> Sum of Two numbers:"+str(num3)+"</h1></body></html>")
+    except ValueError:
+        return HttpResponse("Invalid Input")        
+
+
+def get_input(request):
+    return render(request, "input1.html")
+
+def post_input(request):
+    return render(request, "input2.html")
+
+def add_get_post_numbers(request):
+    if request.method == "GET":
+        try:
+            num1 = request.GET['n1']
+            num2 = request.GET['n2']
+            num3 = int(num1) + int(num2)
+            return HttpResponse("<html><body bgcolor=cyan><h1> Sum of Two numbers:"+str(num3)+"</h1></body></html>")
+        except ValueError:
+            return HttpResponse("Invalid Input")
+    else:
+        try:
+            num1 = request.POST['n1']
+            num2 = request.POST['n2']
+            num3 = int(num1) * int(num2)
+            return HttpResponse("<html><body bgcolor=cyan><h1> Multiplication of Two numbers:"+str(num3)+"</h1></body></html>")
+        except ValueError:
+            return HttpResponse("Invalid Input")
+
+
+class AddGetPostNumbers(View):
+    def get(self, request):
+        num1 = request.GET['n1']
+        num2 = request.GET['n2']
+        num3 = int(num1) + int(num2)
+        return HttpResponse("<html><body bgcolor=cyan><h1> Sum of Two numbers:"+str(num3)+"</h1></body></html>")
+    def post(self, request):
+        num1 = request.POST['n1']
+        num2 = request.POST['n2']
+        num3 = int(num1) * int(num2)
+        return HttpResponse("<html><body bgcolor=cyan><h1> Multiplication of Two numbers:"+str(num3)+"</h1></body></html>")
+
+def login(request):
+    return render(request,"login.html")
+
+def nag_student_register(request):
+    return render(request,"nag_student_reg.html")
+
+@csrf_exempt
+def save_nag_student(request):
+    try:
+        studentId = request.POST.get('st_id')
+        FirstName = request.POST.get('first_name')
+        Lastname =request.POST.get('last_name')
+        subjectname = request.POST.get('subject_name')
+        NagStudent.objects.create(st_id=studentId,last_name=Lastname,firstname= FirstName,sc_name=subjectname)
+        return HttpResponse("Nagtudent record created succesfully")
+    except ValueError:
+        return HttpResponse("Invalid Student details")
+
+def save_nag_student_via_forms(request):
+    form = NagStudentForm(request.POST)
+    if form.is_valid():
+        student = NagStudent(st_id=form.cleaned_data['sid'],
+                             last_name=form.cleaned_data['lastName'],
+                             firstname=form.cleaned_data['firstName'],
+                             sc_name=form.cleaned_data['subjectName']
+                            )
+        student.save()
+        return HttpResponse("Nag Student data inserted successfully!!!!")
+    return render(request, "save_nag_student_via_forms.html", {'myform': form})
+
+def save_nag_student_via_model_forms(request):
+    if request.method == "POST":
+        form = NagStudentModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, "links.html")
+    else:
+        form = NagStudentModelForm()
+    return render(request, "data.html", {'myform': form})
+
+def dipaly_students(request):
+    students = NagStudent.objects.all()
+    return render(request, "display.html", {"records": students})
+
+def get_breakfast_details(request):
+    bf_items = Item.objects.filter(menu=1)
+    return HttpResponse(bf_items)
+    
+
+def cookie_example(request):
+    return render(request, "cookie_input.html")
+
+def add_by_cookie(request):
+    num1 = request.GET['n1']
+    num2 = request.GET['n2']
+    num3 = int(num1) + int(num2)
+    resp = HttpResponse("successfully Added")
+    resp.set_cookie("num3", num3, max_age=20)
+    return resp
+
+def display_by_cookie(request):
+    if 'num3' in request.COOKIES:
+        res = request.COOKIES['num3']
+        return HttpResponse("Addition of two numbers:" +res)
+    else:
+        return HttpResponse("Please Enter Values")
+
+
+def session_example(request):
+    return render(request, "session_input.html")
+
+def add_by_session(request):
+    num1 = request.GET['n1']
+    num2 = request.GET['n2']
+    num3 = int(num1) + int(num2)
+    request.session['num3'] = num3
+    request.session.set_expiry(20)
+    return HttpResponse("successfully Added")
+    
+
+def display_by_session(request):
+    if request.session.has_key('num3'):
+        print("8888888888888888", request.session)
+        res = request.session['num3']
+        return HttpResponse("Addition of two numbers:" +str(res))
+    else:
+        return render(request, "session_input.html")
+class NagTeacherDetails(View):
+    def get(self, request):
+        records = TeacherDetails.objects.all()
+        if records:
+            return HttpResponse(records)
+        else:
+            return HttpResponse("no records found")
+def TeacherDetailsAsTable(request):
+    details = TeacherDetails.objects.all()
+    return render(request, "show.html", {"records":details})
