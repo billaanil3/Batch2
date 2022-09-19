@@ -278,4 +278,4 @@ def dipaly_students(request):
 def display_employees(request):
     employes = Employee.objects.all()
     print("=================",employes)
-    return render(request, "display.html", {"record": employes})
+    return render(request, "display_emp.html", {"record": employes})

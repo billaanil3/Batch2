@@ -1,0 +1,23 @@
+<html>
+	<body>
+		<table border="1">
+			<tr>
+				<th>Employee Id</th>
+				<th>Employee Name</th>
+				<th>Employee Initial</th>
+				<th>Employee Company name</th>
+                <th>Employee company area</th>
+			</tr>
+			{% for rec in records %}
+			<tr>
+				<td> {{ rec.EmpId }} </td>
+				<td> {{ rec.Name }} </td>
+				<td> {{ rec.Initial }} </td>
+				<td> {{ rec.CompanyName }} </td>
+                <td> {{ rec.Area   }} </td>
+			</tr>
+			{% endfor %}
+		</table>
+		<a href="/save_employee_via_model_forms/">Click here to add another record</a>
+	</body>
+</html>
